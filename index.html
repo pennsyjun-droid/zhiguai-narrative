@@ -5056,7 +5056,7 @@ h5.god-section-title {
       </div>
       <div class="cat-card" onclick="navigate('/zhiguai/index/items')">
         <div class="cat-icon">⚔️</div>
-        <div class="cat-name">法器/道具索引</div>
+<div class="cat-name">法器/道具/采集物索引</div>
         <div class="cat-code">IT-NNN</div>
         <div class="cat-count" id="it-count"></div>
       </div>
@@ -5900,7 +5900,7 @@ document.getElementById('gods-count').textContent = `${DATA.world_gods?.gods?.le
 const INDEX_CONFIG = {
   monsters: {title: '👹 妖怪/精怪索引', key: 'index_monsters', idCol: 'MO-ID', cols: ['MO-ID','名称','精彩度','出处','故事ID','简述','母题类型','游戏设计建议']},
   spells:   {title: '✨ 法术/能力索引', key: 'index_spells',   idCol: 'SP-ID', cols: ['SP-ID','名称','精彩度','出处','故事ID','简述','游戏设计建议','母题类型']},
-  items:    {title: '⚔️ 法器/道具索引', key: 'index_items',    idCol: 'IT-ID', cols: ['IT-ID','名称','精彩度','出处','故事ID','简述','游戏设计建议','禁忌/代价','母题类型']},
+items:    {title: '⚔️ 法器/道具/采集物索引', key: 'index_items',    idCol: 'IT-ID', cols: ['IT-ID','名称','精彩度','出处','故事ID','简述','游戏设计建议','禁忌/代价','母题类型']},
   places:   {title: '🏔️ 场所/空间索引', key: 'index_places',   idCol: 'PL-ID', cols: ['PL-ID','名称','精彩度','出处','故事ID','简述','游戏设计建议','界别','母题类型']},
   rituals:  {title: '🎎 仪式/民俗索引', key: 'index_rituals',  idCol: 'RI-ID', cols: ['RI-ID','名称','精彩度','出处','故事ID','简述','游戏设计建议','触发条件','母题类型']},
   plots:    {title: '📖 叙事桥段索引', key: 'index_plots',    idCol: 'PT-ID', cols: ['PT-ID','桥段标题','所属篇目','故事ID','叙事技法','描述摘要']}
@@ -5963,6 +5963,7 @@ const RITUAL_CATEGORY_ORDER = [
 
 // 法器道具分类配置（与MD索引v3.3分类体系一致）
 const ITEM_CATEGORY_ORDER = [
+  {name: '可采集/收集物品', icon: '⛏️', desc: '矿石类/植物类/动物材料副产品/其他类', subcategories: [{name: '8a. 矿石类', icon: '💎'}, {name: '8b. 植物类', icon: '🌿'}, {name: '8c. 动物材料/副产品', icon: '🦴'}, {name: '8d. 其他类', icon: '📦'}]},
   {name: '武器', icon: '⚔️', desc: '近战+远程武器、防御性武器、法术类武器', subcategories: [{name: '1a. 近战+远程武器', icon: '🗡️'}, {name: '1b. 防御性武器', icon: '🛡️'}, {name: '1c. 法术类武器', icon: '🔮'}]},
   {name: '镜鉴照物', icon: '🪞', desc: '各类具有照妖、透视、映像等特殊功能的镜子和发光珠宝'},
   {name: '丹药仙草', icon: '💊', desc: '可直接服用/使用的丹药、仙草、灵药等，具有治疗/增益/变化等效果'},
@@ -5970,7 +5971,6 @@ const ITEM_CATEGORY_ORDER = [
   {name: '符印文书', icon: '📜', desc: '具有法力/权力效力的文字载体，包括符箓、经卷、诏令、诉状等'},
   {name: '珠宝玉石', icon: '💎', desc: '各类珍贵的宝石、玉器、金银器物、珍珠等，兼具收藏价值和特殊功能'},
   {name: '衣冠服饰', icon: '👘', desc: '各类可穿戴的服装、冠冕、鞋履、饰品等，提供外观变化或功能性增益'},
-  {name: '可采集/收集物品', icon: '⛏️', desc: '矿石类/植物类/动物材料副产品/其他类', subcategories: [{name: '8a. 矿石类', icon: '💎'}, {name: '8b. 植物类', icon: '🌿'}, {name: '8c. 动物材料/副产品', icon: '🦴'}, {name: '8d. 其他类', icon: '📦'}]},
   {name: '器皿容具', icon: '🏺', desc: '各类容器、囊袋、匣盒等，用于盛装、储存或运输物品'},
   {name: '坐骑/载具', icon: '🐎', desc: '各类可骑乘或搭乘的交通工具，包括神兽坐骑、马车、仙车等'},
   {name: '家具/摆件', icon: '🪑', desc: '可放置于住宅/场景中的装饰性或功能性物件'},
@@ -6072,7 +6072,7 @@ function showIndex(type) {
         </div>
       `;
     } else if (type === 'items') {
-      document.getElementById('index-subtitle').textContent = `从唐传奇与酉阳杂俎中提取，共收录 ${validData.length} 件法器/道具`;
+document.getElementById('index-subtitle').textContent = `从唐传奇与酉阳杂俎中提取，共收录 ${validData.length} 件法器/道具/采集物`;
       extraHeader.innerHTML = `
         <div class="monster-index-header">
           <div class="monster-rating-box">
