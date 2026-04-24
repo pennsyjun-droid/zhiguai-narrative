@@ -4768,6 +4768,20 @@ h5.god-section-title {
   margin-top: 4px;
 }
 
+/* 篇章题解介绍 */
+.yycz-chapter-intro {
+  font-size: 12px;
+  color: var(--text-muted);
+  line-height: 1.6;
+  padding: 6px 16px 6px 22px;
+  margin-top: 2px;
+  opacity: 0.8;
+  border-left: 3px solid transparent;
+}
+.yycz-chapter-section.collapsed .yycz-chapter-intro {
+  display: none;
+}
+
 @media (max-width: 768px) {
   .yycz-type-bar .bar-label {
     width: 120px;
@@ -5947,27 +5961,27 @@ const RITUAL_CATEGORY_ORDER = [
   {name: '远国异民', icon: '🌍', desc: '远方异国的奇特民族、风俗与传说，异域文明的记录'}
 ];
 
-// 法器道具分类配置
+// 法器道具分类配置（与MD索引v3.3分类体系一致）
 const ITEM_CATEGORY_ORDER = [
-  {name: '武器-近战', icon: '⚔️', desc: '包括近战兵器（剑、刀、杖、锤、匕首、链锤等），涵盖所有需要近身接触才能使用的攻击性器物'},
-  {name: '武器-远程', icon: '🏹', desc: '包括远程武器（弹弓、弹丸、飞剑、投掷物等），涵盖所有可在远距离发动攻击的器物'},
-  {name: '信息/法术-镜鉴照物', icon: '🪞', desc: '各类具有照妖、透视、映像等特殊功能的镜子和发光珠宝'},
-  {name: '治疗-丹药仙草', icon: '💊', desc: '可直接服用/使用的丹药、仙草、灵药等，具有治疗/增益/变化等效果'},
-  {name: '补给-酒食饮品', icon: '🍶', desc: '各类可食用/饮用的食物、酒水、粮食、仙果等'},
-  {name: '可采集/收集物品', icon: '⛏️', desc: '大世界中可采集的原材料，分为矿石类、植物类和其他类'},
+  {name: '武器', icon: '⚔️', desc: '近战+远程武器、防御性武器、法术类武器', subcategories: [{name: '1a. 近战+远程武器', icon: '🗡️'}, {name: '1b. 防御性武器', icon: '🛡️'}, {name: '1c. 法术类武器', icon: '🔮'}]},
+  {name: '镜鉴照物', icon: '🪞', desc: '各类具有照妖、透视、映像等特殊功能的镜子和发光珠宝'},
+  {name: '丹药仙草', icon: '💊', desc: '可直接服用/使用的丹药、仙草、灵药等，具有治疗/增益/变化等效果'},
+  {name: '酒食饮品', icon: '🍶', desc: '各类可食用/饮用的食物、酒水、粮食、仙果等'},
+  {name: '符印文书', icon: '📜', desc: '具有法力/权力效力的文字载体，包括符箓、经卷、诏令、诉状等'},
   {name: '珠宝玉石', icon: '💎', desc: '各类珍贵的宝石、玉器、金银器物、珍珠等，兼具收藏价值和特殊功能'},
+  {name: '衣冠服饰', icon: '👘', desc: '各类可穿戴的服装、冠冕、鞋履、饰品等，提供外观变化或功能性增益'},
+  {name: '可采集/收集物品', icon: '⛏️', desc: '矿石类/植物类/动物材料副产品/其他类', subcategories: [{name: '8a. 矿石类', icon: '💎'}, {name: '8b. 植物类', icon: '🌿'}, {name: '8c. 动物材料/副产品', icon: '🦴'}, {name: '8d. 其他类', icon: '📦'}]},
+  {name: '器皿容具', icon: '🏺', desc: '各类容器、囊袋、匣盒等，用于盛装、储存或运输物品'},
   {name: '坐骑/载具', icon: '🐎', desc: '各类可骑乘或搭乘的交通工具，包括神兽坐骑、马车、仙车等'},
+  {name: '家具/摆件', icon: '🪑', desc: '可放置于住宅/场景中的装饰性或功能性物件'},
+  {name: '乐器声物', icon: '🎵', desc: '各类乐器和能发出声音的器物，部分具有召唤、预警或治疗等特殊功能'},
+  {name: '灯烛光器', icon: '🕯️', desc: '各类照明器具，部分具有辟邪或预警功能'},
   {name: '宠物/灵兽', icon: '🐾', desc: '可驯养、携带或绑定的灵性生物及其相关道具'},
   {name: '货币/经济道具', icon: '🪙', desc: '各类货币、通货和经济交易媒介，包括实物货币、冥界货币等'},
-  {name: '衣冠服饰', icon: '👘', desc: '各类可穿戴的服装、冠冕、鞋履、饰品等，提供外观变化或功能性增益'},
-  {name: '符印文书', icon: '📜', desc: '具有法力/权力效力的文字载体，包括符箓、经卷、诏令、诉状等'},
-  {name: '奇异物品', icon: '🎭', desc: '无法归入上述类别的特殊物品，可作为限时活动奖励、节日道具等'},
-  {name: '器皿容具', icon: '🏺', desc: '各类容器、囊袋、匣盒等，用于盛装、储存或运输物品'},
+  {name: '图纸/配方', icon: '📋', desc: '记录制作方法、炼丹配方或修行功法的知识载体'},
   {name: '信物凭证', icon: '💌', desc: '具有情感/身份证明功能的物品，包括定情信物、通行凭证等'},
-  {name: '乐器声物', icon: '🎵', desc: '各类乐器和能发出声音的器物，部分具有召唤、预警或治疗等特殊功能'},
-  {name: '家具/摆件', icon: '🪑', desc: '可放置于住宅/场景中的装饰性或功能性物件'},
-  {name: '灯烛光器', icon: '🕯️', desc: '各类照明器具，部分具有辟邪或预警功能'},
-  {name: '图纸/配方', icon: '📋', desc: '记录制作方法、炼丹配方或修行功法的知识载体'}
+  {name: '奇异物品', icon: '🎭', desc: '无法归入上述类别的特殊物品，可作为限时活动奖励、节日道具等'},
+  {name: '染料/幻化道具', icon: '🎨', desc: '用于改变装备/角色外观的道具，含染料、漆料、变色材料等'}
 ];
 
 const PLACE_CATEGORY_ORDER = [
@@ -5977,7 +5991,8 @@ const PLACE_CATEGORY_ORDER = [
   {name: '野外/自然区域/洞天', icon: '🌲', desc: '未被城镇覆盖的广袤天地——山林、水域、荒原、溶洞等自然地形，以及从野外入口进入的洞天福地。洞天核心特征："入口在人间，内部非人间"——需特定条件进入，伴随时间异常和禁忌规则。', subcategories: [{name: '野外/自然区域', icon: '🏔️'}, {name: '洞天', icon: '🕳️'}]},
   {name: '宗教仪式场所', icon: '⛩️', desc: '神佛驻留人间的锚点——寺庙、神庙、祭祀场所，人间与超自然力量正式交汇的"官方通道"。核心设计逻辑："仪式触发"——特定行为激活场所超自然属性。'},
   {name: '仙界', icon: '☁️', desc: '完全脱离人间地理的纯粹仙人领域——天河仙桥、海外仙山等不在人间地图上的空间，无法步行到达，只能通过仙人引渡/任务链解锁/声望受邀进入。'},
-  {name: '妖域/龙宫/异空间', icon: '🐉', desc: '由妖怪、龙族或异物主宰的完整异世界——龙宫、狐域、虾国、蚁城、画中世界。核心特征："非人类文明的完整世界观"——不是怪物巢穴，而是有社会结构的异族领地。'}
+  {name: '妖域/龙宫/异空间', icon: '🐉', desc: '由妖怪、龙族或异物主宰的完整异世界——龙宫、狐域、虾国、蚁城、画中世界。核心特征："非人类文明的完整世界观"——不是怪物巢穴，而是有社会结构的异族领地。'},
+  {name: '远国异域场所', icon: '🌍', desc: '丝绸之路沿线及海外远国的奇异场所——沙漠盐田、悬索国度、海上奇岛等。核心设计逻辑："越远越奇"——距离中原越远，自然法则越不寻常。'}
 ];
 
 // 叙事桥段分类配置（10个功能类别）
@@ -7770,50 +7785,52 @@ function showStories(type) {
   }
 }
 
-// 酉阳杂俎全书概览数据（按真实总条目数比例）
+// 酉阳杂俎全书概览数据（按真实总条目数比例，含题解）
 const YYCZ_FULL_CHAPTERS = [
-  { name: '忠志', volume: '前集卷一', icon: '📜', type: '帝王轶事', total: 20, extracted: 6, desc: '唐高祖至代宗九位皇帝的奇闻轶事', color: '#e4c563', category: '朝野·制度·考据' },
-  { name: '礼异', volume: '前集卷一', icon: '📜', type: '礼仪制度', total: 13, extracted: 7, desc: '汉至南北朝的朝觐礼仪、丧葬制度、婚礼习俗', color: '#e4c563', category: '朝野·制度·考据' },
-  { name: '天咫', volume: '前集卷一', icon: '🌙', type: '天文异闻', total: 6, extracted: 4, desc: '月亮传说与天文异象，含吴刚伐桂最早文字记载', color: '#7eb8da', category: '异域·天象·风物' },
-  { name: '玉格', volume: '前集卷二', icon: '🧙', type: '道教/冥界', total: 40, extracted: 20, desc: '道教宇宙观——六天鬼神之宫、酆都冥界体系', color: '#a78bfa', category: '道教·冥界·丧葬' },
-  { name: '壶史', volume: '前集卷二', icon: '🧙', type: '隐士/方术', total: 10, extracted: 8, desc: '隐士高人传记——贴月照明、灰袋道士、变物法术等', color: '#a78bfa', category: '奇术·奇器·奇物' },
-  { name: '贝编', volume: '前集卷三', icon: '☸️', type: '佛教知识', total: 65, extracted: 9, desc: '佛教宇宙观——天界层级、地狱体系、天竺寺庙见闻', color: '#f0a060', category: '佛教·寺庙·灵验' },
-  { name: '境异', volume: '前集卷四', icon: '🌍', type: '异域风物', total: 32, extracted: 8, desc: '各地奇异风俗——突厥始祖、夜叉城、飞头獠子等', color: '#56b6c2', category: '异域·天象·风物' },
-  { name: '喜兆/祸兆', volume: '前集卷四', icon: '🔮', type: '吉凶预兆', total: 6, extracted: 2, desc: '拜相吉兆、枯骨妙妓、幡竿雷劈等预兆故事', color: '#56b6c2', category: '异域·天象·风物' },
-  { name: '物革', volume: '前集卷四', icon: '🦋', type: '物变异象', total: 6, extracted: 3, desc: '物质变异——鱼片化蝶、石裂飞鸟、柳叶化鱼等', color: '#56b6c2', category: '异域·天象·风物' },
-  { name: '诡习', volume: '前集卷五', icon: '🎪', type: '奇人绝技', total: 6, extracted: 0, desc: '蝇虎排阵、无手乞丐脚写楷书、飞奔投豆等绝技', color: '#e06c75', category: '奇术·奇器·奇物' },
-  { name: '怪术', volume: '前集卷五', icon: '🧙', type: '法术奇闻', total: 16, extracted: 10, desc: '一行和尚偷北斗、梵僧幻术、布雾攻城等法术故事', color: '#e06c75', category: '奇术·奇器·奇物' },
-  { name: '艺绝', volume: '前集卷六', icon: '🎨', type: '工艺绝技', total: 6, extracted: 2, desc: '水面作画拓印、菩提像先塑五脏等精妙工艺', color: '#e06c75', category: '奇术·奇器·奇物' },
-  { name: '器奇', volume: '前集卷六', icon: '⚔️', type: '奇器宝物', total: 5, extracted: 3, desc: '宋青春灵剑、郑云逵异剑、辟尘巾等神器故事', color: '#e06c75', category: '奇术·奇器·奇物' },
-  { name: '乐', volume: '前集卷七', icon: '🎵', type: '音乐奇闻', total: 8, extracted: 3, desc: '咸阳铜人自动乐队、池底铁片共鸣、梦中得曲等', color: '#d19a66', category: '生活·技艺·风俗' },
-  { name: '酒食', volume: '前集卷七', icon: '🍶', type: '饮食文化', total: 15, extracted: 0, desc: '唐代饮食文化记录', color: '#d19a66', category: '生活·技艺·风俗' },
-  { name: '医', volume: '前集卷七', icon: '💊', type: '医药奇闻', total: 5, extracted: 0, desc: '医药奇闻记录', color: '#d19a66', category: '生活·技艺·风俗' },
-  { name: '黥', volume: '前集卷八', icon: '🖋️', type: '纹身文化', total: 25, extracted: 0, desc: '唐代纹身文化——荆楚刺青、军中黥面等', color: '#d19a66', category: '生活·技艺·风俗' },
-  { name: '事感', volume: '前集卷九', icon: '🔮', type: '感应故事', total: 8, extracted: 0, desc: '天人感应、物类相感等故事', color: '#c678dd', category: '志怪·传奇' },
-  { name: '盗侠', volume: '前集卷九', icon: '⚔️', type: '侠盗奇人', total: 10, extracted: 0, desc: '飞天夜叉术、七剑北斗阵、僧盗飞飞等武侠故事', color: '#c678dd', category: '志怪·传奇' },
-  { name: '物异', volume: '前集卷十', icon: '✨', type: '奇异器物', total: 60, extracted: 35, desc: '照骨宝、风声木、青玉灯、萤火芝、上清珠等奇物', color: '#e06c75', category: '奇术·奇器·奇物' },
-  { name: '广知', volume: '前集卷十一', icon: '📚', type: '杂学知识', total: 20, extracted: 0, desc: '杂学知识汇编', color: '#e4c563', category: '朝野·制度·考据' },
-  { name: '语资', volume: '前集卷十二', icon: '📝', type: '语言考据', total: 25, extracted: 0, desc: '语言典故考据', color: '#e4c563', category: '朝野·制度·考据' },
-  { name: '冥迹', volume: '前集卷十三', icon: '👻', type: '冥界故事', total: 10, extracted: 0, desc: '亡魂归来、冥界交通、转世轮回等故事', color: '#a78bfa', category: '道教·冥界·丧葬' },
-  { name: '尸穸', volume: '前集卷十三', icon: '💀', type: '丧葬异闻', total: 10, extracted: 0, desc: '古墓三重机关、方相驱鬼、尸舞等丧葬恐怖故事', color: '#a78bfa', category: '道教·冥界·丧葬' },
-  { name: '诺皋记上', volume: '前集卷十四', icon: '👻', type: '志怪故事', total: 30, extracted: 0, desc: '天帝篡位、灶神告罪、野叉规则、虾国幻境等', color: '#c678dd', category: '志怪·传奇' },
-  { name: '诺皋记下', volume: '前集卷十五', icon: '👻', type: '志怪故事', total: 25, extracted: 0, desc: '驿站食人鬼、寸人国、人面疮、天狐九尾等', color: '#c678dd', category: '志怪·传奇' },
-  { name: '羽篇', volume: '前集卷十六', icon: '🐦', type: '鸟类博物', total: 30, extracted: 0, desc: '鸟类博物记录', color: '#6bcb77', category: '博物·草木·禽兽' },
-  { name: '毛篇', volume: '前集卷十六', icon: '🐾', type: '兽类博物', total: 30, extracted: 0, desc: '兽类博物记录', color: '#6bcb77', category: '博物·草木·禽兽' },
-  { name: '鳞介篇', volume: '前集卷十七', icon: '🐟', type: '鱼类博物', total: 25, extracted: 0, desc: '鱼类博物记录', color: '#6bcb77', category: '博物·草木·禽兽' },
-  { name: '虫篇', volume: '前集卷十七', icon: '🦗', type: '虫类博物', total: 20, extracted: 0, desc: '虫类博物记录', color: '#6bcb77', category: '博物·草木·禽兽' },
-  { name: '木篇', volume: '前集卷十八', icon: '🌳', type: '植物博物', total: 60, extracted: 2, desc: '异果化石、四味木等奇异树木', color: '#6bcb77', category: '博物·草木·禽兽' },
-  { name: '草篇', volume: '前集卷十九', icon: '🌿', type: '草药博物', total: 69, extracted: 4, desc: '鹿活草、舞草、梦草、地日草等奇异草药', color: '#6bcb77', category: '博物·草木·禽兽' },
-  { name: '肉攫部', volume: '前集卷二十', icon: '🦅', type: '鹰猎专论', total: 38, extracted: 0, desc: '鹰的品种、毛色、训练、疾病诊断——唐代驯鹰百科', color: '#6bcb77', category: '博物·草木·禽兽' },
-  { name: '支诺皋上', volume: '续集卷一', icon: '👻', type: '志怪故事', total: 17, extracted: 0, desc: '叶限（中国灰姑娘）、金锥记、青桐树精等精华', color: '#c678dd', category: '志怪·传奇' },
-  { name: '支诺皋中', volume: '续集卷二', icon: '👻', type: '志怪故事', total: 32, extracted: 0, desc: '韩幹画马成真、脉望、太岁肉块等鬼怪法术', color: '#c678dd', category: '志怪·传奇' },
-  { name: '支诺皋下', volume: '续集卷三', icon: '👻', type: '志怪故事', total: 31, extracted: 0, desc: '郑琼罗女鬼写诗、佛像异世界、蚁城等', color: '#c678dd', category: '志怪·传奇' },
-  { name: '贬误', volume: '续集卷四', icon: '📝', type: '考据纠错', total: 43, extracted: 0, desc: '聻字辟邪、韩滉听哭声破案、炼丹守夜等', color: '#e4c563', category: '朝野·制度·考据' },
-  { name: '寺塔记', volume: '续集卷五/六', icon: '🏛️', type: '寺庙壁画', total: 93, extracted: 0, desc: '长安各寺壁画塑像——吴道子醉画、韩幹少年画才等', color: '#f0a060', category: '佛教·寺庙·灵验' },
-  { name: '金刚经鸠异', volume: '续集卷七', icon: '☸️', type: '佛经灵验', total: 22, extracted: 0, desc: '持诵金刚经灵验——冥界审判、虎口脱险、经卷护体等', color: '#f0a060', category: '佛教·寺庙·灵验' },
-  { name: '支动', volume: '续集卷八', icon: '🐾', type: '动物博物', total: 63, extracted: 0, desc: '动物奇异特征——郎巾测谎虫、独角神羊等', color: '#6bcb77', category: '博物·草木·禽兽' },
-  { name: '支植上', volume: '续集卷九', icon: '🌸', type: '植物博物', total: 50, extracted: 0, desc: '花木记录', color: '#6bcb77', category: '博物·草木·禽兽' },
-  { name: '支植下', volume: '续集卷十', icon: '🌸', type: '植物博物', total: 34, extracted: 0, desc: '花木记录——石桂芝等仙药设定', color: '#6bcb77', category: '博物·草木·禽兽' },
+  { name: '忠志', volume: '前集卷一', icon: '📜', type: '帝王轶事', total: 20, extracted: 6, desc: '唐高祖至代宗九位皇帝的奇闻轶事，如骆宾王檄文、吐蕃纸鸢钓雕、十二国宝等', color: '#e4c563', category: '朝野·制度·考据', intro: '共20条。记载唐高祖至代宗九位皇帝的奇闻轶事。多为短小精悍的帝王逸事。' },
+  { name: '礼异', volume: '前集卷一', icon: '📜', type: '礼仪制度', total: 13, extracted: 7, desc: '汉至南北朝的朝觐礼仪、丧葬制度、婚礼习俗，如打新郎、九种彩礼等', color: '#e4c563', category: '朝野·制度·考据', intro: '共13条。记录汉代至南北朝的朝觐礼仪、丧葬制度、外交仪仗、婚礼习俗。' },
+  { name: '天咫', volume: '前集卷一', icon: '🌙', type: '天文异闻', total: 6, extracted: 5, desc: '月亮传说与天文异象，含吴刚伐桂最早文字记载', color: '#7eb8da', category: '异域·天象·风物', intro: '共6条。关于月亮的各种传说和天文异象。吴刚伐桂的最早文字记载就在这里！' },
+  { name: '玉格', volume: '前集卷二', icon: '🧙', type: '道教/冥界', total: 40, extracted: 20, desc: '道教宇宙观——六天鬼神之宫、酆都冥界体系、赵业游冥府等', color: '#a78bfa', category: '道教·冥界·丧葬', intro: '共40条。大量道教宇宙观内容——三界诸天、名山福地、洞天六宫、冥界体系。冥界体系极为详尽。' },
+  { name: '壶史', volume: '前集卷二', icon: '🧙', type: '隐士/方术', total: 10, extracted: 9, desc: '隐士高人传记——贴月照明、灰袋道士、变物法术等', color: '#a78bfa', category: '奇术·奇器·奇物', intro: '共10条。记载各种隐士和方术高人的故事，故事性极强，每条都是完整的人物小传。' },
+  { name: '贝编', volume: '前集卷三', icon: '☸️', type: '佛教知识', total: 65, extracted: 9, desc: '佛教宇宙观——天界层级、地狱体系、天竺寺庙见闻', color: '#f0a060', category: '佛教·寺庙·灵验', intro: '共65条。前半部分为佛教宇宙观知识记录（三界诸天、四大部洲、六道、地狱），后半部分为佛寺胜迹、高僧故事。' },
+  { name: '境异', volume: '前集卷四', icon: '🌍', type: '异域风物', total: 32, extracted: 32, desc: '各地奇异风俗——突厥始祖、夜叉城、飞头獠子、非洲拨拔力国等', color: '#56b6c2', category: '异域·天象·风物', intro: '共32条。记录各地奇异风俗和异域见闻，是唐代人对"异域"的想象和记录。' },
+  { name: '喜兆/祸兆', volume: '前集卷四', icon: '🔮', type: '吉凶预兆', total: 6, extracted: 6, desc: '拜相吉兆、枯骨妙妓、幡竿雷劈等预兆故事', color: '#56b6c2', category: '异域·天象·风物', intro: '各3条。记录吉凶预兆。祸兆篇极为精彩！' },
+  { name: '物革', volume: '前集卷四', icon: '🦋', type: '物变异象', total: 6, extracted: 6, desc: '物质变异——鱼片化蝶、石裂飞鸟、柳叶化鱼等奇幻意象', color: '#56b6c2', category: '异域·天象·风物', intro: '共6条。记录各种物质变异现象。每条都是绝妙的奇幻意象！' },
+  { name: '诡习', volume: '前集卷五', icon: '🎪', type: '奇人绝技', total: 6, extracted: 6, desc: '蝇虎排阵、无手乞丐脚写楷书、飞奔投豆等绝技', color: '#e06c75', category: '奇术·奇器·奇物', intro: '共6条。记载各种奇人绝技——无手乞丐脚写楷书、蝇虎排阵、弹弓成字、击钱贯豆等。' },
+  { name: '怪术', volume: '前集卷五', icon: '🧙', type: '法术奇闻', total: 16, extracted: 16, desc: '一行和尚偷北斗、梵僧幻术、布雾攻城等法术故事', color: '#e06c75', category: '奇术·奇器·奇物', intro: '共16条。各种法术和奇异事件，故事性很强。一行和尚条目是全书最精彩的长篇之一。' },
+  { name: '艺绝', volume: '前集卷六', icon: '🎨', type: '工艺绝技', total: 6, extracted: 6, desc: '水面作画拓印、菩提像先塑五脏等精妙工艺', color: '#e06c75', category: '奇术·奇器·奇物', intro: '共6条。各种精妙工艺。' },
+  { name: '器奇', volume: '前集卷六', icon: '⚔️', type: '奇器宝物', total: 5, extracted: 5, desc: '宋青春灵剑、郑云逵异剑、辟尘巾等神器故事', color: '#e06c75', category: '奇术·奇器·奇物', intro: '共5条。各种神奇器物的故事，每条都是完整的"神器故事"。' },
+  { name: '乐', volume: '前集卷七', icon: '🎵', type: '音乐奇闻', total: 8, extracted: 8, desc: '咸阳铜人自动乐队、池底铁片共鸣、梦中得曲等', color: '#d19a66', category: '生活·技艺·风俗', intro: '共8条。各种音乐奇闻。' },
+  { name: '酒食', volume: '前集卷七', icon: '🍶', type: '饮食文化', total: 12, extracted: 12, desc: '昆仑觞、碧筩杯、青田壶、伊尹五味论、天下珍馐录等', color: '#d19a66', category: '生活·技艺·风俗', intro: '记载唐代饮食文化，包括名酒、珍馐、食谱、名家名食等。' },
+  { name: '医', volume: '前集卷七', icon: '💊', type: '医药奇闻', total: 5, extracted: 5, desc: '扁鹊冢、句骊客神针、天竺延年药、王彦伯辨鱼毒等', color: '#d19a66', category: '生活·技艺·风俗', intro: '记载医药奇闻，包括扁鹊冢、句骊客针术、天竺延年药等。' },
+  { name: '黥', volume: '前集卷八', icon: '🖋️', type: '纹身文化', total: 15, extracted: 15, desc: '白舍人行诗图、纹身神力、靥钿起源、黥刑史考等', color: '#d19a66', category: '生活·技艺·风俗', intro: '记载唐代纹身文化，包括街头恶少纹身、白舍人行诗图、纹身神力、靥钿起源、黥刑史考等。' },
+  { name: '雷', volume: '前集卷八', icon: '⚡', type: '雷电奇闻', total: 7, extracted: 7, desc: '道士召雷、雷兽坠地变铁器、霹雳车、猪首雷神等', color: '#d19a66', category: '生活·技艺·风俗', intro: '记载雷电奇闻，包括道士召雷、雷兽坠地、霹雳车等。' },
+  { name: '梦', volume: '前集卷八', icon: '💤', type: '解梦奇闻', total: 12, extracted: 12, desc: '拆字解梦、梦中取骨、梦物实化、伯奇食梦等', color: '#d19a66', category: '生活·技艺·风俗', intro: '记载解梦奇闻，包括拆字解梦、梦中取骨、梦物实化等。' },
+  { name: '事感', volume: '前集卷九', icon: '🔮', type: '感应故事', total: 3, extracted: 3, desc: '天人感应、物类相感等故事', color: '#c678dd', category: '志怪·传奇', intro: '记录天人感应、物类相感的故事。' },
+  { name: '盗侠', volume: '前集卷九', icon: '⚔️', type: '侠盗奇人', total: 10, extracted: 10, desc: '飞天夜叉术、七剑北斗阵、僧盗飞飞等武侠故事', color: '#c678dd', category: '志怪·传奇', intro: '记录唐代侠盗、刺客、奇人异术，是酉阳杂俎中最具"武侠"色彩的篇章。' },
+  { name: '物异', volume: '前集卷十', icon: '✨', type: '奇异器物', total: 60, extracted: 60, desc: '照骨宝、风声木、青玉灯、萤火芝、上清珠等奇物', color: '#e06c75', category: '奇术·奇器·奇物', intro: '约60条。记录天下奇异之物——奇镜、奇石、奇泉、奇器、异域宝物、自然异象等。大量条目是游戏道具/场景/世界观设定的绝佳素材。' },
+  { name: '广知', volume: '前集卷十一', icon: '📚', type: '杂学知识', total: 20, extracted: 0, desc: '杂学知识汇编', color: '#e4c563', category: '朝野·制度·考据', intro: '杂学知识汇编。' },
+  { name: '语资', volume: '前集卷十二', icon: '📝', type: '语言考据', total: 25, extracted: 0, desc: '语言典故考据', color: '#e4c563', category: '朝野·制度·考据', intro: '语言典故考据。' },
+  { name: '冥迹', volume: '前集卷十三', icon: '👻', type: '冥界故事', total: 10, extracted: 5, desc: '亡魂归来、冥界交通、转世轮回等故事', color: '#a78bfa', category: '道教·冥界·丧葬', intro: '专记亡魂归来、冥界交通、转世轮回等故事。' },
+  { name: '尸穸', volume: '前集卷十三', icon: '💀', type: '丧葬异闻', total: 10, extracted: 10, desc: '古墓三重机关、方相驱鬼、尸舞等丧葬恐怖故事', color: '#a78bfa', category: '道教·冥界·丧葬', intro: '专记丧葬习俗、古墓奇闻、尸变怪异，是酉阳杂俎中最"恐怖"的篇章。' },
+  { name: '诺皋记上', volume: '前集卷十四', icon: '👻', type: '志怪故事', total: 28, extracted: 29, desc: '天帝篡位、灶神告罪、野叉规则、虾国幻境等神鬼大全', color: '#c678dd', category: '志怪·传奇', intro: '酉阳杂俎中最重要的志怪篇章，记录神鬼精怪、奇人异事。' },
+  { name: '诺皋记下', volume: '前集卷十五', icon: '👻', type: '志怪故事', total: 28, extracted: 28, desc: '驿站食人鬼、寸人国、人面疮、天狐九尾等志怪精华', color: '#c678dd', category: '志怪·传奇', intro: '延续诺皋记上的志怪叙事。' },
+  { name: '羽篇', volume: '前集卷十六', icon: '🐦', type: '鸟类博物', total: 31, extracted: 31, desc: '凤凰、九头鸟、嗽金鸟、夜行游女等奇异飞禽', color: '#6bcb77', category: '博物·草木·禽兽', intro: '广动植之一的鸟类部分。记载各类飞禽，从神话中的凤凰到日常所见的燕雀，涵盖灵禽、猛禽、异鸟等。' },
+  { name: '毛篇', volume: '前集卷十六', icon: '🐾', type: '兽类博物', total: 30, extracted: 30, desc: '狮象虎马、猿猴犬猫、狒狒猳國等走兽博物', color: '#6bcb77', category: '博物·草木·禽兽', intro: '广动植之一的兽类部分。记载各类走兽，从狮子、象、虎到猿猴、犬猫，许多条目包含丰富的民俗信仰。' },
+  { name: '鳞介篇', volume: '前集卷十七', icon: '🐟', type: '鱼类博物', total: 26, extracted: 26, desc: '龙、井鱼、乌贼、鲵鱼、飞鱼等水族博物', color: '#6bcb77', category: '博物·草木·禽兽', intro: '广动植之二的水族/鳞甲部分。记载龙、各类鱼、蟹、贝等水生动物。' },
+  { name: '虫篇', volume: '前集卷十七', icon: '🦗', type: '虫类博物', total: 33, extracted: 33, desc: '蝉蝶蚁蜘蛛、蜈蚣毒蜂、天牛灶马等虫类博物', color: '#6bcb77', category: '博物·草木·禽兽', intro: '广动植之二的虫类部分。记载各类昆虫、蛇、蜘蛛等，涵盖日常所见和奇异毒虫。' },
+  { name: '木篇', volume: '前集卷十八', icon: '🌳', type: '植物博物', total: 60, extracted: 60, desc: '异果化石、四味木等奇异树木', color: '#6bcb77', category: '博物·草木·禽兽', intro: '共60条。前半部分为中国本土树木，后半部分为西域外来植物，具有浓厚的丝绸之路色彩。' },
+  { name: '草篇', volume: '前集卷十九', icon: '🌿', type: '草药博物', total: 69, extracted: 69, desc: '鹿活草、舞草、梦草、地日草等奇异草药', color: '#6bcb77', category: '博物·草木·禽兽', intro: '共69条。前十条记载各类灵芝，后面杂记各类花草，其中牡丹条最为精彩，记载韩湘子原型催花变色写诗的传奇故事。' },
+  { name: '肉攫部', volume: '前集卷二十', icon: '🦅', type: '鹰猎专论', total: 38, extracted: 0, desc: '鹰的品种、毛色、训练、疾病诊断——唐代驯鹰百科', color: '#6bcb77', category: '博物·草木·禽兽', intro: '鹰的品种、毛色、训练、疾病诊断——唐代驯鹰百科。' },
+  { name: '支诺皋上', volume: '续集卷一', icon: '👻', type: '志怪故事', total: 17, extracted: 17, desc: '叶限（中国灰姑娘）、金锥记、青桐树精、毕院等精华', color: '#c678dd', category: '志怪·传奇', intro: '"支"是支派、支属之意。支诺皋即诺皋记的补遗。本篇十七条，记鬼魅精怪奇人异事，其中不少精彩篇章。' },
+  { name: '支诺皋中', volume: '续集卷二', icon: '👻', type: '志怪故事', total: 32, extracted: 27, desc: '韩幹画马成真、脉望、太岁肉块、搐气袋等鬼怪法术', color: '#c678dd', category: '志怪·传奇', intro: '共32条。各种鬼怪、法术、奇异事件的集中记录。' },
+  { name: '支诺皋下', volume: '续集卷三', icon: '👻', type: '志怪故事', total: 31, extracted: 29, desc: '郑琼罗女鬼写诗、佛像异世界、蚁城、韩确梦鱼等', color: '#c678dd', category: '志怪·传奇', intro: '共31条。故事类型丰富——人鬼恋、狐精、冥界错抓、动物报恩等，是志怪小说的经典母题集合。' },
+  { name: '贬误', volume: '续集卷四', icon: '📝', type: '考据纠错', total: 43, extracted: 4, desc: '聻字辟邪、韩滉听哭声破案、炼丹守夜等考据与故事', color: '#e4c563', category: '朝野·制度·考据', intro: '共43条。纠正各种流传的错误说法和用典之误，其中穿插了不少有趣的故事和民俗。' },
+  { name: '寺塔记', volume: '续集卷五/六', icon: '🏛️', type: '寺庙壁画', total: 93, extracted: 11, desc: '长安各寺壁画塑像——吴道子醉画、韩幹少年画才等', color: '#f0a060', category: '佛教·寺庙·灵验', intro: '共93条。逐一记录长安各寺庙的壁画、塑像、珍藏，是唐代艺术史的第一手资料。' },
+  { name: '金刚经鸠异', volume: '续集卷七', icon: '☸️', type: '佛经灵验', total: 22, extracted: 22, desc: '持诵金刚经灵验——冥界审判、虎口脱险、经卷护体等', color: '#f0a060', category: '佛教·寺庙·灵验', intro: '段成式奉父命编纂的《金刚经》灵验记。22条全部是持诵《金刚经》后获得灵验的故事。' },
+  { name: '支动', volume: '续集卷八', icon: '🐾', type: '动物博物', total: 63, extracted: 63, desc: '动物奇异特征——郎巾测谎虫、独角神羊等', color: '#6bcb77', category: '博物·草木·禽兽', intro: '共63条。记载动物六十余种，包括鸟兽鱼虫，多为李德裕（卫公）所述的奇异动物。' },
+  { name: '支植上', volume: '续集卷九', icon: '🌸', type: '植物博物', total: 50, extracted: 50, desc: '花木记录——卫公平泉庄奇花异木、人子藤集象、三赖草媚药、仙人独梪树等', color: '#6bcb77', category: '博物·草木·禽兽', intro: '共50条。记载植物五十余种，多为李德裕（卫公）所述的奇花异木。' },
+  { name: '支植下', volume: '续集卷十', icon: '🌸', type: '植物博物', total: 34, extracted: 34, desc: '花木记录——无患木驱鬼、怪松画杀、石桂芝千年仙药、醋心树树医等', color: '#6bcb77', category: '博物·草木·禽兽', intro: '共34条。记载植物三十余种。' },
 ];
 
 // ═══════════════════════════════════════════════════════
@@ -7906,16 +7923,16 @@ function renderTcOverview(container) {
   container.innerHTML = html;
 }
 
-// 合并后的8大类定义（用于内容类型分布图）
+// 合并后的8大类定义（用于内容类型分布表格）
 const YYCZ_CATEGORIES = [
-  { name: '志怪·传奇', icon: '👻', color: '#c678dd', desc: '妖怪图鉴、传奇叙事、内含大量法器/武器' },
-  { name: '博物·草木·禽兽', icon: '🌿', color: '#6bcb77', desc: '采集物、仙药、奇兽、驯鹰系统' },
-  { name: '佛教·寺庙·灵验', icon: '☸️', color: '#f0a060', desc: '佛教宇宙观、壁画艺术、护法灵验' },
-  { name: '奇术·奇器·奇物', icon: '⚔️', color: '#e06c75', desc: '武器、法器、道具、奇物大全' },
-  { name: '朝野·制度·考据', icon: '📜', color: '#e4c563', desc: '帝王轶事、礼仪制度、人文背景' },
-  { name: '道教·冥界·丧葬', icon: '🧙', color: '#a78bfa', desc: '冥界世界观、道教法术、丧葬机关' },
-  { name: '生活·技艺·风俗', icon: '🎵', color: '#d19a66', desc: '音乐、饮食、医药、纹身——NPC生态/文化系统' },
-  { name: '异域·天象·风物', icon: '🌍', color: '#56b6c2', desc: '异域见闻、天文异象、人文生态' },
+  { name: '道教·冥界·丧葬', icon: '🧙', color: '#a78bfa', desc: '冥界世界观、道教法术、丧葬机关', chapters: '玉格、冥迹、尸穸', chapterCount: 3, gameValue: '冥界世界观、道教法术、丧葬机关' },
+  { name: '佛教·寺庙·灵验', icon: '☸️', color: '#f0a060', desc: '佛教宇宙观、壁画艺术、护法灵验', chapters: '贝编、寺塔记、金刚经鸠异', chapterCount: 3, gameValue: '佛教宇宙观、壁画艺术、护法灵验' },
+  { name: '志怪·传奇', icon: '👻', color: '#c678dd', desc: '妖怪图鉴、传奇叙事、内含大量法器/武器', chapters: '诺皋记上/下、支诺皋上/中/下、事感、盗侠', chapterCount: 7, gameValue: '妖怪图鉴、传奇叙事、内含大量法器/武器' },
+  { name: '朝野·制度·考据', icon: '📜', color: '#e4c563', desc: '帝王轶事、礼仪制度、人文背景', chapters: '忠志、礼异、广知、语资、贬误', chapterCount: 5, gameValue: '帝王轶事、礼仪制度、人文背景' },
+  { name: '奇术·奇器·奇物', icon: '⚔️', color: '#e06c75', desc: '武器、法器、道具、奇物大全', chapters: '怪术、诡习、艺绝、器奇、物异、壶史', chapterCount: 6, gameValue: '武器、法器、道具、奇物大全' },
+  { name: '异域·天象·风物', icon: '🌍', color: '#56b6c2', desc: '异域见闻、天文异象、人文生态', chapters: '境异、天咫、喜兆/祸兆、物革', chapterCount: 4, gameValue: '异域见闻、天文异象、人文生态' },
+  { name: '生活·技艺·风俗', icon: '🎵', color: '#d19a66', desc: '音乐、饮食、医药、纹身——NPC生态/文化系统', chapters: '乐、酒食、医、黥（含雷、梦）', chapterCount: 6, gameValue: '音乐、饮食、医药、纹身——NPC生态/文化系统' },
+  { name: '博物·草木·禽兽', icon: '🌿', color: '#6bcb77', desc: '采集物、仙药、奇兽、驯鹰系统', chapters: '羽/毛/鳞介/虫篇、木/草篇、肉攫部、支动、支植上/下', chapterCount: 10, gameValue: '采集物、仙药、奇兽、驯鹰系统' },
 ];
 
 function renderYyczOverview(container) {
@@ -7934,7 +7951,7 @@ function renderYyczOverview(container) {
   const totalAll = YYCZ_FULL_CHAPTERS.reduce((s, c) => s + c.total, 0);
   const extractedAll = YYCZ_FULL_CHAPTERS.reduce((s, c) => s + c.extracted, 0);
   
-  // 按合并后的8大类统计内容类型分布
+  // 按合并后的8大类统计
   const catGroups = {};
   YYCZ_FULL_CHAPTERS.forEach(ch => {
     const cat = ch.category;
@@ -7942,87 +7959,69 @@ function renderYyczOverview(container) {
     catGroups[cat].total += ch.total;
     catGroups[cat].extracted += ch.extracted;
   });
-  // 按YYCZ_CATEGORIES的顺序排列（已按条目数从大到小排好）
   const catArr = YYCZ_CATEGORIES.map(c => ({
     ...c,
     total: catGroups[c.name]?.total || 0,
     extracted: catGroups[c.name]?.extracted || 0
   })).sort((a, b) => b.total - a.total);
-  const maxTotal = catArr[0].total;
   
   // 一句话介绍
   let html = `
     <div class="yycz-overview-intro">
       <div class="intro-text">
-        <strong>《酉阳杂俎》</strong>，唐·段成式撰，中国古代最伟大的志怪笔记之一。全书前集二十卷、续集十卷，涵盖志怪传奇、道教冥界、佛教宇宙、异域风物、博物杂学等，是唐代社会文化的百科全书式记录。全书约 <strong>1050+ 条</strong>，本库精选提取 <strong>${extractedAll} 条</strong>（覆盖率约 ${Math.round(extractedAll/totalAll*100)}%），优先提取具有完整叙事的志怪故事，纯博物、考据类的条目<strong>将在后续全部补齐</strong>。
+        <strong>《酉阳杂俎》</strong>，唐·段成式撰，中国古代最伟大的志怪笔记之一。全书前集二十卷、续集十卷，涵盖志怪传奇、道教冥界、佛教宇宙、异域风物、博物杂学等，是唐代社会文化的百科全书式记录。全书约 <strong>${totalAll} 条</strong>，本库已提取 <strong>${extractedAll} 条</strong>（覆盖率约 ${Math.round(extractedAll/totalAll*100)}%）。
       </div>
     </div>
   `;
   
-  // 内容类型分布（按合并后的8大类，真实总条目数比例）
-  html += `<div class="yycz-type-dist">
-    <div class="dist-title">📊 全书内容类型分布（按原书总条目数·8大类）</div>
-    <div class="yycz-type-bars">`;
-  catArr.forEach(cat => {
-    const pct = Math.round(cat.total / totalAll * 100);
-    const barW = Math.round(cat.total / maxTotal * 100);
-    html += `
-      <div class="yycz-type-bar">
-        <span class="bar-label">${cat.icon} ${cat.name}</span>
-        <div class="bar-track">
-          <div class="bar-fill" style="width:${barW}%;background:${cat.color};">${pct}%</div>
-        </div>
-        <span class="bar-count">${cat.total} 条</span>
-      </div>`;
-  });
-  html += `</div></div>`;
-  
-  // 全书数据总览表格（篇名可点击跳转到对应篇章）
+  // 合并后的8大类表格（替代原来的分布图+篇名总览两个部分）
   html += `
-    <div class="yycz-collapsible-section">
-      <div class="yycz-collapse-header" onclick="this.parentElement.classList.toggle('collapsed')">
-        <span class="collapse-arrow">▼</span>
-        <span class="collapse-title">📋 全书篇名提取比例总览</span>
-      </div>
-      <div class="yycz-collapse-body">
-    <div style="overflow-x:auto;">
-    <table class="yycz-overview-table">
-      <thead>
-        <tr>
-          <th>篇名</th>
-          <th>所属卷</th>
-          <th>分类</th>
-          <th>内容概要</th>
-          <th>总条目</th>
-          <th>提取比例</th>
-        </tr>
-      </thead>
-      <tbody>`;
-  YYCZ_FULL_CHAPTERS.forEach(ch => {
-    const ratio = ch.total > 0 ? Math.round(ch.extracted / ch.total * 100) : 0;
+    <div class="yycz-cat-table-section">
+      <div class="dist-title" style="font-size:16px;font-weight:600;color:var(--text-primary);margin-bottom:14px;">📊 全书内容分类总览（8大类）</div>
+      <div style="overflow-x:auto;">
+      <table class="yycz-overview-table">
+        <thead>
+          <tr>
+            <th>分类</th>
+            <th>包含篇章</th>
+            <th>篇数</th>
+            <th>总条目</th>
+            <th>提取比例</th>
+            <th>游戏核心价值</th>
+          </tr>
+        </thead>
+        <tbody>`;
+  let totalExtracted = 0, totalTotal = 0;
+  catArr.forEach(cat => {
+    const ratio = cat.total > 0 ? Math.round(cat.extracted / cat.total * 100) : 0;
     const barW = Math.min(ratio, 100);
-    const hasData = ch.extracted > 0;
-    const catDef = YYCZ_CATEGORIES.find(c => c.name === ch.category);
-    const catColor = catDef ? catDef.color : ch.color;
-    // 有提取数据的篇名可点击跳转
-    const nameHtml = hasData 
-      ? `<a href="javascript:void(0)" onclick="scrollToChapter('${ch.name}')" style="color:var(--gold);text-decoration:none;border-bottom:1px dashed var(--gold);">${ch.icon} ${ch.name}</a>`
-      : `<span style="opacity:0.5;">${ch.icon} ${ch.name}</span>`;
+    totalExtracted += cat.extracted;
+    totalTotal += cat.total;
     html += `
-        <tr class="${hasData ? 'has-data' : 'no-data'}">
-          <td class="chapter-name">${nameHtml}</td>
-          <td class="chapter-vol">${ch.volume}</td>
-          <td><span class="chapter-type-tag" style="background:${catColor}22;color:${catColor};border:1px solid ${catColor}44;">${ch.category}</span></td>
-          <td class="chapter-desc">${ch.desc}</td>
-          <td style="text-align:center;">${ch.total}</td>
-          <td class="chapter-ratio">
-            ${ch.extracted}/${ch.total}
-            <span style="color:${hasData ? catColor : 'var(--text-muted)'};">(${ratio}%)</span>
-            <span class="ratio-bar" style="width:${barW * 0.5}px;background:${catColor};"></span>
-          </td>
-        </tr>`;
+          <tr>
+            <td class="chapter-name" style="white-space:nowrap;"><span style="color:${cat.color};font-weight:700;">${cat.icon} ${cat.name}</span></td>
+            <td style="font-size:12px;color:var(--text-secondary);max-width:220px;line-height:1.5;">${cat.chapters}</td>
+            <td style="text-align:center;color:var(--text-muted);">${cat.chapterCount}</td>
+            <td style="text-align:center;">${cat.total}</td>
+            <td class="chapter-ratio">
+              <span style="color:${ratio > 0 ? cat.color : 'var(--text-muted)'};">${ratio}%</span>
+              <span class="ratio-bar" style="width:${barW * 0.6}px;background:${cat.color};"></span>
+            </td>
+            <td style="font-size:12px;color:var(--text-secondary);max-width:240px;">${cat.gameValue}</td>
+          </tr>`;
   });
-  html += `</tbody></table></div></div></div>`;
+  // 合计行
+  const totalRatio = totalTotal > 0 ? Math.round(totalExtracted / totalTotal * 100) : 0;
+  html += `
+          <tr style="border-top:2px solid rgba(212,175,55,0.3);font-weight:600;">
+            <td style="color:var(--gold);">合计</td>
+            <td style="font-size:12px;color:var(--text-muted);">42篇</td>
+            <td style="text-align:center;color:var(--gold);">42</td>
+            <td style="text-align:center;color:var(--gold);">${totalTotal}</td>
+            <td class="chapter-ratio"><span style="color:var(--gold);">${totalRatio}%</span></td>
+            <td></td>
+          </tr>`;
+  html += `</tbody></table></div></div>`;
   
   container.innerHTML = html;
 }
@@ -8064,6 +8063,9 @@ function renderStories(stories) {
     
     let html = '';
     chapters.forEach(ch => {
+      // 从YYCZ_FULL_CHAPTERS中查找该篇章的题解介绍
+      const chDef = YYCZ_FULL_CHAPTERS.find(c => c.name === ch.name);
+      const introText = chDef && chDef.intro ? chDef.intro : '';
       html += `
         <div class="yycz-chapter-section collapsed">
         <div class="yycz-chapter-header" onclick="this.parentElement.classList.toggle('collapsed')">
@@ -8074,6 +8076,7 @@ function renderStories(stories) {
           <span class="ch-type">${ch.type}</span>
           <span class="ch-count">${ch.items.length} 条</span>
         </div>
+        ${introText ? `<div class="yycz-chapter-intro">${introText}</div>` : ''}
         <div class="yycz-chapter-items">`;
       ch.items.forEach(s => {
         const summary = s.summary || (s.sections && s.sections.summary) || (s.parts && s.parts.summary) || '';
