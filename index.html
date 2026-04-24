@@ -5311,7 +5311,7 @@ const RITUAL_CATEGORY_ORDER = [
 
 // 法器道具分类配置（与MD索引v3.3分类体系一致）
 const ITEM_CATEGORY_ORDER = [
-  {name: '可采集/收集物品', icon: '⛏️', desc: '矿石类/植物类（6子分类）/动物材料副产品（水生+陆地）/其他类', subcategories: [{name: '8a. 矿石类', icon: '💎'}, {name: '8b-1. 灵芝仙草类', icon: '🌿'}, {name: '8b-2. 竹木类', icon: '🌲'}, {name: '8b-3. 花草类', icon: '🌸'}, {name: '8b-4. 水生类', icon: '💧'}, {name: '8b-5. 西域/丝路植物', icon: '🐫'}, {name: '8b-6. 果蔬食用/药材类', icon: '🌾'}, {name: '8c-1. 水生动物材料', icon: '🐟'}, {name: '8c-2. 陆地/飞禽/昆虫材料', icon: '🐾'}, {name: '8d. 其他类', icon: '📦'}]},
+  {name: '可采集/收集物品', icon: '⛏️', desc: '矿石类/植物类（6子分类）/动物材料副产品（水生+陆地）/其他类', subcategories: [{name: '8a. 矿石类', icon: '💎'}, {name: '8b-1. 灵芝仙草类', icon: '🌿', group: '8b. 植物类', groupIcon: '🌱'}, {name: '8b-2. 竹木类', icon: '🌲', group: '8b. 植物类', groupIcon: '🌱'}, {name: '8b-3. 花草类', icon: '🌸', group: '8b. 植物类', groupIcon: '🌱'}, {name: '8b-4. 水生类', icon: '💧', group: '8b. 植物类', groupIcon: '🌱'}, {name: '8b-5. 西域/丝路植物', icon: '🐫', group: '8b. 植物类', groupIcon: '🌱'}, {name: '8b-6. 果蔬食用/药材类', icon: '🌾', group: '8b. 植物类', groupIcon: '🌱'}, {name: '8c-1. 水生动物材料', icon: '🐟', group: '8c. 动物材料/副产品', groupIcon: '🦴'}, {name: '8c-2. 陆地/飞禽/昆虫材料', icon: '🐾', group: '8c. 动物材料/副产品', groupIcon: '🦴'}, {name: '8d. 其他类', icon: '📦'}]},
   {name: '武器', icon: '⚔️', desc: '近战+远程武器、防御性武器、法术类武器', subcategories: [{name: '1a. 近战+远程武器', icon: '🗡️'}, {name: '1b. 防御性武器', icon: '🛡️'}, {name: '1c. 法术类武器', icon: '🔮'}]},
   {name: '镜鉴照物', icon: '🪞', desc: '各类具有照妖、透视、映像等特殊功能的镜子和发光珠宝'},
   {name: '丹药仙草', icon: '💊', desc: '可直接服用/使用的丹药、仙草、灵药等，具有治疗/增益/变化等效果'},
@@ -5544,7 +5544,15 @@ function renderCategoryIndex(data, cfg, categoryOrder) {
       // 按子类别分组渲染
       const subOrder = catInfo.subcategories.map(s => s.name);
       const subIcons = {};
-      catInfo.subcategories.forEach(s => { subIcons[s.name] = s.icon || '📌'; });
+      const subGroupMap = {}; // 子分类 -> 中间级分组名
+      const subGroupIcons = {}; // 中间级分组名 -> icon
+      catInfo.subcategories.forEach(s => {
+        subIcons[s.name] = s.icon || '📌';
+        if (s.group) {
+          subGroupMap[s.name] = s.group;
+          subGroupIcons[s.group] = s.groupIcon || '📁';
+        }
+      });
       const subGroups = {};
       items.forEach(r => {
         const sub = r._subcategory || '其他';
@@ -5552,10 +5560,9 @@ function renderCategoryIndex(data, cfg, categoryOrder) {
         subGroups[sub].push(r);
       });
       
-      subOrder.forEach(subName => {
-        const subItems = subGroups[subName];
-        if (!subItems || subItems.length === 0) return;
-        html += `
+      // 辅助函数：渲染一个子分类的表格
+      function renderSubTable(subName, subItems) {
+        let h = `
           <div class="subcategory-section">
             <div class="subcategory-title" onclick="toggleSubcategory(this)" style="cursor:pointer;user-select:none;">
               <span>${subIcons[subName] || '📌'} ${subName}（${subItems.length}条）</span>
@@ -5566,7 +5573,7 @@ function renderCategoryIndex(data, cfg, categoryOrder) {
                 <thead><tr>${showCols.map(c => `<th>${c}</th>`).join('')}</tr></thead>
                 <tbody>`;
         subItems.forEach(row => {
-          html += '<tr>';
+          h += '<tr>';
           showCols.forEach(col => {
             let val = row[col] || '';
             const isId = col === cfg.idCol;
@@ -5581,12 +5588,55 @@ function renderCategoryIndex(data, cfg, categoryOrder) {
               val = val.replace(/(TC-\d+)/g, '<a class="story-link" onclick="navigateStory(\'$1\')">$1</a>');
               val = val.replace(/(YYCZ-[\w.]+)/g, '<a class="story-link" onclick="navigateStory(\'$1\')">$1</a>');
             }
-            html += `<td class="${cls}">${val}</td>`;
+            h += `<td class="${cls}">${val}</td>`;
           });
-          html += '</tr>';
+          h += '</tr>';
         });
-        html += `</tbody></table></div></div>`;
+        h += `</tbody></table></div></div>`;
+        return h;
+      }
+      
+      // 按中间级分组渲染（支持三级结构）
+      let currentGroup = null;
+      let groupItemCount = 0;
+      subOrder.forEach((subName, idx) => {
+        const subItems = subGroups[subName];
+        if (!subItems || subItems.length === 0) return;
+        const grp = subGroupMap[subName];
+        
+        // 如果有中间级分组，且是新分组的开始
+        if (grp && grp !== currentGroup) {
+          // 关闭上一个中间级分组
+          if (currentGroup !== null) {
+            html += `</div></div>`; // 关闭 mid-group-body 和 mid-group-section
+          }
+          // 计算该中间级分组的总条目数
+          groupItemCount = 0;
+          subOrder.forEach(sn => {
+            if (subGroupMap[sn] === grp && subGroups[sn]) groupItemCount += subGroups[sn].length;
+          });
+          currentGroup = grp;
+          html += `
+          <div class="mid-group-section" style="margin:8px 0 4px 0;border:1px solid rgba(139,90,43,0.15);border-radius:8px;overflow:hidden;">
+            <div class="mid-group-header" onclick="toggleMidGroup(this)" style="cursor:pointer;user-select:none;display:flex;align-items:center;justify-content:space-between;padding:10px 16px;background:rgba(139,90,43,0.08);border-bottom:1px solid rgba(139,90,43,0.1);">
+              <span style="font-size:15px;font-weight:600;color:#5a3a1a;">${subGroupIcons[grp] || '📁'} ${grp}（${groupItemCount}条）</span>
+              <span class="mid-toggle" style="font-size:12px;color:#888;transition:transform 0.2s;">▼</span>
+            </div>
+            <div class="mid-group-body" style="padding:4px 8px;">`;
+        }
+        
+        // 如果从有分组切换到无分组，关闭上一个中间级分组
+        if (!grp && currentGroup !== null) {
+          html += `</div></div>`;
+          currentGroup = null;
+        }
+        
+        html += renderSubTable(subName, subItems);
       });
+      // 关闭最后一个中间级分组
+      if (currentGroup !== null) {
+        html += `</div></div>`;
+      }
       
       // 处理没有子类别的条目
       const otherItems = items.filter(r => !r._subcategory || !subOrder.includes(r._subcategory));
@@ -5675,6 +5725,21 @@ function toggleSubcategory(titleEl) {
       if (toggleIcon) toggleIcon.textContent = '▼';
     } else {
       tableWrap.style.display = 'none';
+      if (toggleIcon) toggleIcon.textContent = '▶';
+    }
+  }
+}
+
+function toggleMidGroup(headerEl) {
+  const section = headerEl.closest('.mid-group-section');
+  const body = section.querySelector('.mid-group-body');
+  const toggleIcon = headerEl.querySelector('.mid-toggle');
+  if (body) {
+    if (body.style.display === 'none') {
+      body.style.display = '';
+      if (toggleIcon) toggleIcon.textContent = '▼';
+    } else {
+      body.style.display = 'none';
       if (toggleIcon) toggleIcon.textContent = '▶';
     }
   }
